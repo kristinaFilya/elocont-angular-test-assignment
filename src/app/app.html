@@ -1,5 +1,38 @@
-<dropdown (change)="selectedItem = $event" [items]="items" />
+<h1>Выбор округов и районов Москвы</h1>
 
-<hr />
+<div class="container">
+  <label>
+    <h2>Выберите округа</h2>
 
-{{ selectedItem | json }}
+    <dropdown
+      [items]="districts"
+      [multi]="true"
+      placeholder="Выберите округа"
+      [formControl]="districtsControl"
+    />
+  </label>
+
+  <label>
+    <h2>Выберите районы</h2>
+
+    <dropdown
+      [groups]="areaGroups()"
+      [multi]="true"
+      [search]="true"
+      placeholder="Выберите районы"
+      [formControl]="areasControl"
+    />
+  </label>
+
+  <div>
+    <h3>Выбранные округа:</h3>
+
+    <pre>{{ districtsControl.value | json }}</pre>
+  </div>
+
+  <div>
+    <h3>Выбранные районы:</h3>
+
+    <pre>{{ areasControl.value | json }}</pre>
+  </div>
+</div>
